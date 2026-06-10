@@ -1,14 +1,18 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { useMerchant } from '../context/MerchantContext.jsx'
 
 export default function Login() {
-  const { signIn } = useMerchant()
+  const { session, signIn } = useMerchant()
   const nav = useNavigate()
   const [email, setEmail]       = useState('')
   const [password, setPassword] = useState('')
   const [error, setError]       = useState('')
   const [loading, setLoading]   = useState(false)
+
+  // 已登录（或登录成功后 session 异步写入）直接进入工作台，
+  // 避免 signIn 与 onAuthStateChange 之间的竞态把用户卡在登录页
+  if (session) return <Navigate to="/dashboard" replace />
 
   async function handleSubmit(e) {
     e.preventDefault()
