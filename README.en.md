@@ -70,6 +70,7 @@ React 18 · Vite 5 · React Router v6 · Supabase (PostgreSQL + PostgREST + Auth
 |------|------|
 | [premium-seat-booking-app](https://github.com/QingMXL/premium-seat-booking-app) | Consumer app (C-side): discover, floor-plan seat picking, deposit lock |
 | **premium-seat-merchant-app** (this repo) | Merchant console (B-side) |
+| [Premium-Seat---Admin](https://github.com/QingMXL/Premium-Seat---Admin) | Platform console (operations): restaurants, merchants, orders & users |
 
 ## 📄 License
 
