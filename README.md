@@ -1,174 +1,76 @@
-# 臻选好餐厅 · 商家管理后台
+<h1 align="center">🏪 臻选餐厅预订 · 商家端</h1>
 
-> 餐厅运营管理 Web 应用，供商家登录后管理预订、菜品、包间及查看运营数据。
-> 与消费者端共用同一 Supabase 数据库，独立部署。
+<p align="center"><b>每一桌，尽在掌握 · Every table, under control</b></p>
+<p align="center"><i>「臻选餐厅预订」平台的商家管理端（B 端）—— 餐厅接单确认、到店核销、桌台与菜品管理的运营后台</i></p>
 
-![React](https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-5-646cff?logo=vite&logoColor=white)
-![Supabase](https://img.shields.io/badge/Supabase-Backend-3ecf8e?logo=supabase&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green)
+<p align="center">
+  <a href="./README.md"><img src="https://img.shields.io/badge/lang-简体中文-0E3D33?style=for-the-badge" alt="简体中文"></a>
+  <a href="./README.en.md"><img src="https://img.shields.io/badge/lang-English-B8923F?style=for-the-badge" alt="English"></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=fff&labelColor=20232A" />
+  <img src="https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=fff" />
+  <img src="https://img.shields.io/badge/Supabase-Auth_+_RLS-3ECF8E?logo=supabase&logoColor=fff" />
+  <img src="https://img.shields.io/badge/License-MIT-green" />
+</p>
 
 ---
 
-## ✨ 功能概览
+## 🖥 界面预览
+
+<p align="center">
+  <img src="screenshots/merchant-dashboard.png" width="100%" alt="今日概览 · 经营看板" />
+</p>
+<p align="center">
+  <img src="screenshots/merchant-bookings.png" width="49.5%" alt="预订管理 · 核销与取消" />
+  <img src="screenshots/merchant-login.png" width="49.5%" alt="商家登录" />
+</p>
+<p align="center"><sub>今日概览 · 预订管理 · 商家登录（Supabase Auth 登录，仅可见本店数据）</sub></p>
+
+## 🌟 项目简介
+
+这是「**臻选餐厅预订**」三端平台中的**商家端**：用户端的食客支付定金下单后，订单实时出现在这里 —— 商家登录自己的餐厅工作台，在今日概览看板掌握当日预订/待到店/营收，在预订管理中确认订单、查看顾客信息、到店一键核销或按规则取消退款，并自助维护菜品（热门标记）、包间（容量/最低消费）与餐厅资料；基于 Supabase Auth + 行级安全（RLS），每个商家账号只能看到和操作自己餐厅的数据。
+
+## ✨ 核心功能
 
 | 页面 | 功能 |
 |------|------|
-| **今日概览** | 今日预订数、待到店、已完成、营收统计；最近预订列表 |
-| **预订管理** | 全量订单表格，按状态/日期筛选，一键核销/取消，查看顾客信息 |
-| **菜品管理** | 卡片网格，新增/编辑/删除菜品，切换热门标记 |
-| **包间管理** | 包间 CRUD，管理容量、最低消费 |
-| **餐厅资料** | 编辑营业时间、简介、地址、电话、标签等全部餐厅信息 |
-| **数据分析** | 近 7/30/90 天预订趋势图、订单状态分布、高峰时段 Top 5 |
-
----
-
-## 🛠 技术栈
-
-| 层 | 技术 |
-|----|------|
-| 前端框架 | React 18 + React Router v6 |
-| 构建工具 | Vite 5 |
-| 后端 / 数据库 | Supabase（PostgreSQL + PostgREST + Auth） |
-| 认证 | Supabase Auth（邮箱 + 密码） |
-| 样式 | 纯 CSS（CSS 变量，管理后台风格，无 UI 库） |
-
----
-
-## 📁 项目结构
-
-```
-src/
-├── lib/
-│   └── supabase.js           # Supabase 客户端（从 .env 读取）
-├── context/
-│   └── MerchantContext.jsx   # 商家认证状态 + 餐厅数据
-├── components/
-│   ├── Layout.jsx            # 侧边栏 + 顶部栏布局
-│   └── Modal.jsx             # 通用弹窗
-├── pages/
-│   ├── Login.jsx             # 登录页
-│   ├── Dashboard.jsx         # 今日概览
-│   ├── Bookings.jsx          # 预订管理
-│   ├── Dishes.jsx            # 菜品管理
-│   ├── Rooms.jsx             # 包间管理
-│   ├── Profile.jsx           # 餐厅资料
-│   └── Analytics.jsx         # 数据分析
-└── styles/
-    └── global.css            # 全局样式 + Design Token
-```
-
----
+| 📊 今日概览 | 今日预订 / 待到店 / 已完成 / 营收四指标 + 当日预订列表 |
+| 📋 预订管理 | 全量订单表格，按状态/日期筛选，一键核销、取消退款，查看顾客信息 |
+| 🍽 菜品管理 | 菜品 CRUD、热门标记切换 |
+| 🚪 包间管理 | 包间 CRUD、容量与最低消费 |
+| 🏛 餐厅资料 | 名称/菜系/地址/营业时间/人均/简介维护 |
+| 📈 数据分析 | 近 7/30/90 天预订趋势、订单状态分布、高峰时段 Top 5 |
 
 ## 🚀 快速开始
 
-### 1. 克隆项目
-
-```bash
-git clone git@github.com:QingMXL/premium-seat-merchant-app.git
-cd premium-seat-merchant-app
-```
-
-### 2. 安装依赖
-
 ```bash
 npm install
+cp .env.example .env      # 填入 Supabase URL 与 Key
+npm run dev               # → http://localhost:5174
 ```
 
-### 3. 配置环境变量
+演示账号：`merchant@yongfuhui.com / Merchant@2024`（雍福会）· `merchant@yuzhilan.com / Merchant@2024`（玉芝兰）
+账号由 `create_merchant.mjs` 创建，经 `merchants` 表绑定餐厅。
 
-```bash
-cp .env.example .env
-```
+## 🔒 权限模型
 
-编辑 `.env`，填入你的 Supabase 项目信息：
+- 商家经 **Supabase Auth** 邮箱密码登录
+- **RLS 行级安全**：`merchants` 表绑定 `auth.users ↔ restaurant`，商家仅能读写本店的餐厅资料 / 菜品 / 包间 / 订单
+- 生产环境使用 anon key + RLS；service_role 仅限本地开发
 
-```env
-VITE_SUPABASE_URL=https://<your-project-ref>.supabase.co
-VITE_SUPABASE_KEY=<your-supabase-key>
-```
+## 🛠 技术栈
 
-> **在哪里找这些值？**  
-> Supabase 控制台 → Project Settings → API
+React 18 · Vite 5 · React Router v6 · Supabase（PostgreSQL + PostgREST + Auth）· 纯 CSS 管理后台风格（无 UI 库）
 
-### 4. 初始化数据库
+## 🔗 同系列仓库
 
-商家端依赖消费者端的核心数据库结构。请确保已执行：
-
-```
-001_schema.sql   # 核心建表
-002_seed.sql     # 初始数据
-003_merchant.sql # 商家表 + RLS 策略
-```
-
-创建商家账号：
-
-```bash
-node supabase-setup/create_merchant.mjs
-```
-
-### 5. 启动开发服务器
-
-```bash
-npm run dev
-# → http://localhost:5174
-```
-
----
-
-## 🗄 数据库依赖
-
-商家端在消费者端数据库基础上新增：
-
-| 表 | 说明 |
-|----|------|
-| `merchants` | 商家账户，关联 `auth.users` ↔ `restaurants` |
-
-新增 RLS 策略（允许商家操作自己的餐厅数据）：
-
-| 表 | 操作 |
-|----|------|
-| `restaurants` | UPDATE（仅本餐厅）|
-| `dishes` | INSERT / UPDATE / DELETE（仅本餐厅）|
-| `rooms` | INSERT / UPDATE / DELETE（仅本餐厅）|
-| `orders` | SELECT / UPDATE（仅本餐厅）|
-| `user_profiles` | SELECT（仅本餐厅的顾客）|
-| `restaurant_tags` | INSERT / DELETE（仅本餐厅）|
-
----
-
-## 🔒 安全说明
-
-- 所有密钥通过 `.env` 注入，`.env` 已加入 `.gitignore`，**不会提交到 Git**
-- 商家通过 **Supabase Auth**（邮箱 + 密码）登录，使用真实 JWT 认证
-- RLS 策略确保每个商家只能访问和修改自己餐厅的数据
-- 生产环境推荐使用 `anon key`，开发环境可使用 `service_role`（跳过 RLS）
-
----
-
-## 📦 构建部署
-
-```bash
-npm run build   # 产物输出到 dist/
-```
-
-Vercel 部署需要在控制台 **Settings → Environment Variables** 中配置：
-
-| 变量名 | 值 |
-|--------|----|
-| `VITE_SUPABASE_URL` | Supabase Project URL |
-| `VITE_SUPABASE_KEY` | Supabase API Key |
-
----
-
-## 🔗 相关项目
-
-| 项目 | 仓库 | 说明 |
-|------|------|------|
-| 消费者端 | [premium-seat-booking-app](https://github.com/QingMXL/premium-seat-booking-app) | 用户预订小程序 |
-| 商家端 | 本仓库 | 餐厅运营管理后台 |
-
----
+| 仓库 | 角色 |
+|------|------|
+| [premium-seat-booking-app](https://github.com/QingMXL/premium-seat-booking-app) | 用户端（C 端）：发现餐厅、平面图选座、定金锁座 |
+| **premium-seat-merchant-app**（本仓库） | 商家端（B 端） |
+| [premium-seat-service](https://github.com/QingMXL/premium-seat-service) | FastAPI 统一 API 服务层 |
 
 ## 📄 License
 
