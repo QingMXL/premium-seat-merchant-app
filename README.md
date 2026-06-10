@@ -70,7 +70,6 @@ React 18 · Vite 5 · React Router v6 · Supabase（PostgreSQL + PostgREST + Aut
 |------|------|
 | [premium-seat-booking-app](https://github.com/QingMXL/premium-seat-booking-app) | 用户端（C 端）：发现餐厅、平面图选座、定金锁座 |
 | **premium-seat-merchant-app**（本仓库） | 商家端（B 端） |
-| [premium-seat-service](https://github.com/QingMXL/premium-seat-service) | FastAPI 统一 API 服务层 |
 
 ## 📄 License
 
